@@ -21,6 +21,8 @@ npm install
 
 例如https://opensea.io/collection/azuki 对应为azuki
 
+![screenshot](screenshot.jpeg)
+
 ## FAQ
 出现`[ERROR]: [object Object]`怎么办？
 
