@@ -2,10 +2,11 @@
   <div>
     <h1>Poor Nerd</h1>
     <n-space vertical>
+      <p>Discord: <a href="https://discord.gg/TCWwxnCE">https://discord.gg/TCWwxnCE</a> 欢迎反馈问题和NFT相关讨论</p>
       <p>默认key由opensea提供，如果有可以换成自己的</p>
     <n-input v-model:value="this.apiKey" type="text" placeholder="opensea api key" />
     <button @click="initClient(this.apiKey)">初始化</button>
-    <p>这里填nft项目名，要从项目os页面网址获取，例如：https://opensea.io/collection/azuki 则填写斜杠后面的azuki</p>
+    <p>这里填nft项目名，要从项目os页面网址获取，例如：https://opensea.io/collection/azuki 则填写斜杠后面的azuki，填写*可以看opensea全部交易</p>
     <n-input v-model:value="this.slug" type="text" placeholder="slug" />
     <button @click="subscribe(this.slug)">开启</button>
     <button @click="unsubscribe">停止</button>
