@@ -1,18 +1,32 @@
 <template>
-  <div>
+  <div id="root">
     <h1>Poor Nerd</h1>
     <n-space vertical>
       <p>Discord: <a href="https://discord.gg/TCWwxnCE">https://discord.gg/TCWwxnCE</a> 欢迎反馈问题和NFT相关讨论</p>
-      <p>默认key由opensea提供，如果有可以换成自己的</p>
+    <!-- <p>默认key由opensea提供，如果有可以换成自己的</p>
     <n-input v-model:value="this.apiKey" type="text" placeholder="opensea api key" />
-    <button @click="initClient(this.apiKey)">初始化</button>
+    <button @click="initClient(this.apiKey)">初始化</button> -->
     <p>这里填nft项目名，要从项目os页面网址获取，例如：https://opensea.io/collection/azuki 则填写斜杠后面的azuki，填写*可以看opensea全部交易</p>
-    <n-input v-model:value="this.slug" type="text" placeholder="slug" />
-    <button @click="subscribe(this.slug)">开启</button>
-    <button @click="unsubscribe">停止</button>
+
+    <n-space>
+      <n-input v-model:value="this.slug" type="text" placeholder="slug"  />
+    <n-button @click="subscribe(this.slug)">开启</n-button>
+    <n-button @click="unsubscribe">停止</n-button>
     </n-space>
+    </n-space>
+    <!-- <n-grid>
+    <n-gi span=6>
+      <n-input v-model:value="this.slug" type="text" placeholder="slug" />
+    </n-gi>
+    <n-gi span=2>
+      <n-button @click="subscribe(this.slug)">开启</n-button>
+    <n-button @click="unsubscribe">停止</n-button>
+    </n-gi>
+    </n-grid> -->
+
     <div class="row">
       <div class="column">
+        <n-space vertical>
         <n-card
           v-for="list in lists.slice().reverse()"
           :key="list.id"
@@ -23,8 +37,10 @@
           <template #header-extra> {{ toEther(list.price) }}ETH </template>
           List #{{ list.id }}
         </n-card>
+        </n-space>
       </div>
       <div class="column">
+        <n-space vertical>
         <n-card
           v-for="sale in sales.slice().reverse()"
           :key="sale.id"
@@ -32,19 +48,21 @@
           size="small"
         >
           <template #header-extra>
-            {{ toEther(sale.price) }}
+            {{ toEther(sale.price) }}ETH
           </template>
-          Trade #{{ sale.id }}ETH
+          Trade #{{ sale.id }}
         </n-card>
+        </n-space>
       </div>
     </div>
+
   </div>
 </template>
 <script>
 import { OpenSeaStreamClient, EventType } from "@opensea/stream-js";
 import { ethers } from "ethers";
-import { NButton, NCard, NInput } from "naive-ui";
-const slug = "cloudyme";
+import { NButton, NCard, NInput, NGrid, NGridItem, NSpace } from "naive-ui";
+
 
 
 
@@ -63,6 +81,9 @@ export default {
     NButton,
     NCard,
     NInput,
+    NGrid,
+    NGridItem,
+    NSpace,
   },
   computed: {
     reverseSales() {
@@ -95,6 +116,7 @@ export default {
           }
         }
       );
+      alert("实时监听已开启")
     },
 
     handleList(event) {
@@ -134,13 +156,18 @@ export default {
       });
     },
   },
-  mounted() {},
+  mounted() {
+    this.initClient(this.apiKey)
+  },
   // updated() {
   //   this.scrollData();
   // }
 };
 </script>
 <style scoped>
+#root {
+  margin: auto 20px;
+}
 img {
   width: 64px;
   height: auto;
