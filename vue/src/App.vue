@@ -1,14 +1,18 @@
 <template>
   <PoorNerd />
+
 </template>
 
 <script>
+
 import PoorNerd from '@/components/PoorNerd.vue'
+
+
 
 export default {
   name: 'App',
   components: {
-    PoorNerd
+    PoorNerd,
   }
 }
 </script>

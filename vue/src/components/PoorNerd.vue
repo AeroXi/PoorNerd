@@ -34,7 +34,7 @@
           size="small"
         >
           <!-- <img :src="list.image"> -->
-          <template #header-extra> {{ toEther(list.price) }}ETH </template>
+          <template #header-extra> {{ list.price }}ETH </template>
           List #{{ list.id }}
         </n-card>
         </n-space>
@@ -48,7 +48,7 @@
           size="small"
         >
           <template #header-extra>
-            {{ toEther(sale.price) }}ETH
+            {{ sale.price }}ETH
           </template>
           Trade #{{ sale.id }}
         </n-card>
@@ -57,11 +57,15 @@
     </div>
 
   </div>
+  <SaleChart 
+  :saleData="chartSaleData"
+  />
 </template>
 <script>
 import { OpenSeaStreamClient, EventType } from "@opensea/stream-js";
 import { ethers } from "ethers";
 import { NButton, NCard, NInput, NGrid, NGridItem, NSpace } from "naive-ui";
+import SaleChart from '@/components/SaleChart.vue'
 
 
 
@@ -84,6 +88,7 @@ export default {
     NGrid,
     NGridItem,
     NSpace,
+    SaleChart,
   },
   computed: {
     reverseSales() {
@@ -92,6 +97,15 @@ export default {
     reverseLists() {
       return this.lists.slice().reverse();
     },
+    chartSaleData() {
+      return this.sales.map(sale => {
+        return {
+          x: sale.id,
+          y: sale.price,
+        };
+      });
+    },
+    
   },
   methods: {
     toEther(wei) {
@@ -123,7 +137,7 @@ export default {
       this.lists.push({
         name: event.payload.item.metadata.name,
         image: event.payload.item.metadata.image_url,
-        price: event.payload.base_price,
+        price: this.toEther(event.payload.base_price),
         id: this.lists.length,
       });
       // console.log(
@@ -137,7 +151,7 @@ export default {
     handleSold(event) {
       this.sales.push({
         name: event.payload.item.metadata.name,
-        price: event.payload.sale_price,
+        price: this.toEther(event.payload.sale_price),
         id: this.sales.length,
       });
       // console.log(event.payload);
