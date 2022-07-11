@@ -2,7 +2,7 @@
   <div id="root">
     <h1>Poor Nerd</h1>
     <n-space vertical>
-      <p>Discord: <a href="https://discord.gg/QrjEKQ39HC">https://discord.gg/TCWwxnCE</a> 欢迎反馈问题和NFT相关讨论</p>
+      <p>Discord: <a href="https://discord.gg/QrjEKQ39HC">https://discord.gg/QrjEKQ39HC</a> 欢迎反馈问题和NFT相关讨论</p>
     <!-- <p>默认key由opensea提供，如果有可以换成自己的</p>
     <n-input v-model:value="this.apiKey" type="text" placeholder="opensea api key" />
     <button @click="initClient(this.apiKey)">初始化</button> -->
