@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "@opensea/stream-js": "^0.0.20",
+    "node-fetch": "2.6.6",
     "web3": "^1.7.3",
     "ws": "^8.6.0"
   }

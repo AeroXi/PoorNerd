@@ -1,4 +1,4 @@
-const openseaKey = ""
+const openseaKey = "8947f22fb3db4b2793724862332e3a2e"
 
 const {OpenSeaStreamClient, EventType} = require('@opensea/stream-js');
 const {WebSocket} = require('ws')
