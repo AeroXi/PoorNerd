@@ -114,6 +114,7 @@ export default {
     initClient(token) {
       this.client = new OpenSeaStreamClient({
         token,
+        onError: (obj) => console.error(obj.message, obj.error),
       });
       console.log(token);
     },
